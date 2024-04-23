@@ -21,3 +21,12 @@ $S(E,V) = O(E)$
 
 - **2b)**
 
+
+
+def get_path(parents, destination):
+    path = []
+    while parents[destination] is not None:
+        path.append(parents[destination])
+        destination = parents[destination]
+    
+    return ''.join(path[::-1])
