@@ -21,7 +21,7 @@ $S(E,V) = O(E)$
 
 - **2b)**
   
-def get_path(parents, destination):
+ def get_path(parents, destination):
 
     path = []
     
