@@ -13,10 +13,10 @@ Place all written answers from `recitation-08.md` here for easier grading.
 - **1b)**
 
 
-  $W(E,V) = W(V) + W(E*log V) = O(V+Elog V)$
+$W(E,V) = W(V) + W(E*log V) = O(V+Elog V)$
 
  
- $S(E,V) = O(E)$  
+$S(E,V) = O(E)$  
 
 
 - **2b)**
