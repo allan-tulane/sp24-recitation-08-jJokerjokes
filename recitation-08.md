@@ -15,7 +15,7 @@ b) What is the work and span of your algorithm?
 **put in answers.md**
 
 .  
-.  $W(E,V) = W(V) + W(E*log V) = O(V+E*log V)$
+.  $W(E,V) = W(V) + W(E*log V) = O(V+Elog V)$
 .  
 
 
