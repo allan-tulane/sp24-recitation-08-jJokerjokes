@@ -1,5 +1,5 @@
 from collections import deque
-from heapq import heappush, heappop 
+import heapq
 
 def shortest_shortest_path(graph, source):
     """
@@ -13,7 +13,29 @@ def shortest_shortest_path(graph, source):
       (shortest path weight, shortest path number of edges). See test case for example.
     """
     ### TODO
-    pass
+    distances = {vertex: float('infinity') for vertex in graph}
+    edge_counts = {vertex: float('infinity') for vertex in graph}
+    distances[source] = 0
+    edge_counts[source] = 0
+    queue = [(0, 0, source)]  # (distance, edge_count, vertex)
+
+    while queue:
+        current_distance, current_edge_count, u = heapq.heappop(queue)
+
+        if current_distance > distances[u]:
+            continue
+
+        for v, weight in graph[u]:
+            distance = current_distance + weight
+            edges = current_edge_count + 1
+            if (distance < distances[v]) or (distance == distances[v] and edges < edge_counts[v]):
+                distances[v] = distance
+                edge_counts[v] = edges
+                heapq.heappush(queue, (distance, edges, v))
+
+    return {vertex: (distances[vertex], edge_counts[vertex]) for vertex in graph}
+
+
     
 
     
@@ -25,7 +47,15 @@ def bfs_path(graph, source):
       that vertex in the shortest path tree.
     """
     ###TODO
-    pass
+    parents = {source: None}
+    queue = deque([source])
+    while queue:
+      current_node = queue.popleft()
+      for neighbor in graph[current_node]:
+          if neighbor not in parents:  
+              parents[neighbor] = current_node  
+              queue.append(neighbor)  
+    return parents
 
 def get_sample_graph():
      return {'s': {'a', 'b'},
@@ -44,5 +74,11 @@ def get_path(parents, destination):
       (excluding the destination node itself). See test_get_path for an example.
     """
     ###TODO
-    pass
+    path = []
+  
+    while parents[destination] is not None:
+        path.append(parents[destination])
+        destination = parents[destination]
+    
+    return ''.join(path[::-1])
 
